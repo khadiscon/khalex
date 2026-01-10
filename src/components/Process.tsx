@@ -1,41 +1,45 @@
 import { motion } from 'framer-motion';
-import { Phone, FileText, Rocket, Settings, BarChart3 } from 'lucide-react';
+import { Phone, FileText, Rocket, Settings, BarChart3, ArrowRight } from 'lucide-react';
 
 const steps = [
   {
     icon: Phone,
+    step: '01',
     title: 'Exploratory Call',
-    description: 'We start with an exploratory call to understand your brand, objectives, and target market. This helps us develop a tailored proposal that meets your unique requirements.',
+    description: 'We start with a call to understand your brand, objectives, and target market to develop a tailored proposal.',
   },
   {
     icon: FileText,
-    title: 'Customized Proposal',
-    description: 'Using the insights from the discovery call, we develop a custom proposal that outlines the project details, schedules, and expected outcomes.',
+    step: '02',
+    title: 'Custom Proposal',
+    description: 'Using insights from our call, we create a detailed proposal outlining project scope, timeline, and expected outcomes.',
   },
   {
     icon: Rocket,
-    title: 'Campaign Initiatives',
-    description: 'Once the proposal is accepted, we commence your campaign by launching a personalized Discord server, organizing your brand, and ensuring all prerequisites are in place.',
+    step: '03',
+    title: 'Campaign Launch',
+    description: 'We launch your campaign with a personalized Discord, organized branding, and all prerequisites in place.',
   },
   {
     icon: Settings,
-    title: 'Continuous Management',
-    description: "Our services don't end with the launch. We offer ongoing assistance to guarantee that your brand's visibility stays robust and your campaigns consistently achieve results.",
+    step: '04',
+    title: 'Ongoing Management',
+    description: 'Continuous support ensures your visibility stays strong and campaigns consistently achieve results.',
   },
   {
     icon: BarChart3,
-    title: 'Analysis and Reporting',
-    description: 'Throughout the campaign, we provide detailed analytics and stats both during and at the end, delivering comprehensive reports on performance and outcomes.',
+    step: '05',
+    title: 'Analytics & Reports',
+    description: 'Detailed analytics and comprehensive reports on performance metrics throughout the campaign.',
   },
 ];
 
 const Process = () => {
   return (
-    <section id="process" className="py-24 relative overflow-hidden bg-gradient-to-b from-primary/5 to-transparent">
-      {/* Background elements */}
+    <section id="process" className="py-24 relative overflow-hidden">
+      {/* Background */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/2 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
-        <div className="absolute w-72 h-72 rounded-full bg-primary/10 blur-[100px] top-1/4 right-1/4 animate-float" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/5 rounded-full blur-[150px]" />
       </div>
 
       <div className="relative z-10 px-6 max-w-7xl mx-auto">
@@ -46,6 +50,14 @@ const Process = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
+          <motion.span
+            className="inline-block px-4 py-2 rounded-full glass-card text-primary text-sm font-medium mb-4"
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+          >
+            How We Work
+          </motion.span>
           <h2 className="text-4xl md:text-5xl font-bold font-display text-gradient mb-4">
             Our Process
           </h2>
@@ -53,36 +65,89 @@ const Process = () => {
             A proven methodology for Web3 marketing success
           </p>
         </motion.div>
-      </div>
 
-      {/* Scrolling cards container */}
-      <div className="overflow-hidden group">
-        <div className="flex gap-6 animate-scroll-cards hover:[animation-play-state:paused] py-8">
-          {/* Duplicate the cards for seamless loop */}
-          {[...steps, ...steps].map((step, index) => (
-            <motion.div
-              key={`${step.title}-${index}`}
-              className="min-w-[380px] max-w-[380px] glass-card rounded-2xl p-8 relative overflow-hidden group/card hover:border-primary/40 hover:bg-white/[0.06] transition-all duration-500 hover:-translate-y-4 hover:shadow-[0_25px_70px_hsl(var(--primary)/0.3)] flex-shrink-0"
-              whileHover={{ scale: 1.03 }}
-            >
-              {/* Gradient overlay */}
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-accent/5 opacity-0 group-hover/card:opacity-100 transition-opacity duration-500" />
-              
-              {/* Bottom accent line */}
-              <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-primary to-accent scale-x-0 group-hover/card:scale-x-100 transition-transform duration-500 origin-left" />
+        {/* Desktop Timeline */}
+        <div className="hidden lg:block relative">
+          {/* Connection line */}
+          <div className="absolute top-24 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+          
+          <div className="grid grid-cols-5 gap-6">
+            {steps.map((step, index) => (
+              <motion.div
+                key={step.title}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.15, duration: 0.5 }}
+                className="relative group"
+              >
+                {/* Connector dot */}
+                <div className="absolute top-[88px] left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-background border-2 border-primary z-10 group-hover:scale-125 transition-transform">
+                  <div className="absolute inset-1 rounded-full bg-primary animate-pulse" />
+                </div>
 
-              <div className="relative z-10 text-center">
+                {/* Arrow to next */}
+                {index < steps.length - 1 && (
+                  <ArrowRight className="absolute top-[84px] -right-3 w-4 h-4 text-primary/40" />
+                )}
+
                 <motion.div
-                  className="w-20 h-20 rounded-2xl bg-gradient-to-br from-primary to-accent flex items-center justify-center mx-auto mb-6 shadow-[0_15px_40px_hsl(var(--primary)/0.4)] group-hover/card:scale-110 transition-transform duration-500"
+                  whileHover={{ y: -5 }}
+                  className="glass-card rounded-2xl p-6 text-center hover:border-primary/30 transition-all duration-300"
                 >
-                  <step.icon className="w-10 h-10 text-primary-foreground" />
-                </motion.div>
+                  {/* Step number */}
+                  <div className="text-xs font-bold text-primary/60 mb-4">
+                    STEP {step.step}
+                  </div>
 
-                <h3 className="text-xl font-bold font-display text-gradient mb-4">
+                  {/* Icon */}
+                  <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:scale-110 transition-transform">
+                    <step.icon className="w-7 h-7 text-primary-foreground" />
+                  </div>
+
+                  <h3 className="text-lg font-bold font-display text-foreground mb-2">
+                    {step.title}
+                  </h3>
+
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    {step.description}
+                  </p>
+                </motion.div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
+        {/* Mobile/Tablet Vertical Timeline */}
+        <div className="lg:hidden space-y-6">
+          {steps.map((step, index) => (
+            <motion.div
+              key={step.title}
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1, duration: 0.5 }}
+              className="flex gap-4 group"
+            >
+              {/* Left side - step indicator */}
+              <div className="flex flex-col items-center">
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center shadow-lg">
+                  <step.icon className="w-6 h-6 text-primary-foreground" />
+                </div>
+                {index < steps.length - 1 && (
+                  <div className="w-0.5 flex-1 bg-gradient-to-b from-primary/30 to-transparent mt-2" />
+                )}
+              </div>
+
+              {/* Right side - content */}
+              <div className="flex-1 glass-card rounded-xl p-5 group-hover:border-primary/30 transition-colors">
+                <div className="text-xs font-bold text-primary/60 mb-1">
+                  STEP {step.step}
+                </div>
+                <h3 className="text-lg font-bold font-display text-foreground mb-2">
                   {step.title}
                 </h3>
-
-                <p className="text-muted-foreground leading-relaxed">
+                <p className="text-sm text-muted-foreground leading-relaxed">
                   {step.description}
                 </p>
               </div>

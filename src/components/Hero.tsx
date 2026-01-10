@@ -1,96 +1,240 @@
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { ArrowRight, Zap } from 'lucide-react';
+import { useRef } from 'react';
 
 const stats = [
-  { number: '530K+', label: 'Followers' },
-  { number: '813M+', label: 'Impressions' },
-  { number: '800K+', label: 'Community Reach' },
-  { number: '11+', label: 'Projects' },
-  { number: '500+', label: 'KOL Network' },
+  { number: '530K+', label: 'Followers', icon: '👥' },
+  { number: '813M+', label: 'Impressions', icon: '📊' },
+  { number: '800K+', label: 'Community', icon: '🌐' },
+  { number: '11+', label: 'Projects', icon: '🚀' },
+  { number: '500+', label: 'KOL Network', icon: '⭐' },
 ];
 
 const Hero = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ['start start', 'end start'],
+  });
+
+  const y = useTransform(scrollYProgress, [0, 1], [0, 200]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+
   return (
-    <section className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20 pb-16 px-6">
-      {/* Background Effects */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-primary/10 rounded-full blur-[120px] animate-pulse-glow" />
-        <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-accent/10 rounded-full blur-[100px] animate-float" />
+    <section
+      ref={containerRef}
+      className="min-h-screen flex items-center justify-center relative overflow-hidden pt-24 pb-20 px-6"
+    >
+      {/* Animated Background */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        {/* Main glow */}
+        <motion.div
+          style={{ y }}
+          className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[900px] h-[900px] bg-primary/15 rounded-full blur-[150px]"
+          animate={{
+            scale: [1, 1.1, 1],
+            opacity: [0.4, 0.6, 0.4],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: 'easeInOut',
+          }}
+        />
+        
+        {/* Secondary glow */}
+        <motion.div
+          className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-accent/10 rounded-full blur-[120px]"
+          animate={{
+            x: [0, 50, 0],
+            y: [0, -30, 0],
+          }}
+          transition={{
+            duration: 10,
+            repeat: Infinity,
+            ease: 'easeInOut',
+          }}
+        />
+
+        {/* Floating particles */}
+        {[...Array(6)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-2 h-2 rounded-full bg-primary/40"
+            style={{
+              left: `${15 + i * 15}%`,
+              top: `${20 + (i % 3) * 25}%`,
+            }}
+            animate={{
+              y: [0, -30, 0],
+              opacity: [0.3, 0.8, 0.3],
+            }}
+            transition={{
+              duration: 4 + i,
+              repeat: Infinity,
+              delay: i * 0.5,
+              ease: 'easeInOut',
+            }}
+          />
+        ))}
+
+        {/* Grid overlay */}
+        <div 
+          className="absolute inset-0 opacity-[0.03]"
+          style={{
+            backgroundImage: `
+              linear-gradient(hsl(var(--primary)) 1px, transparent 1px),
+              linear-gradient(90deg, hsl(var(--primary)) 1px, transparent 1px)
+            `,
+            backgroundSize: '60px 60px',
+          }}
+        />
       </div>
 
-      <div className="relative z-10 max-w-5xl mx-auto text-center">
+      <motion.div style={{ opacity }} className="relative z-10 max-w-5xl mx-auto text-center">
+        {/* Badge */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          initial={{ opacity: 0, y: 20, scale: 0.9 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 0.5 }}
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card border-primary/20 mb-8 group hover:border-primary/40 transition-colors cursor-default"
         >
-          <motion.span 
-            className="inline-block px-4 py-2 rounded-full glass-card text-primary text-sm font-medium mb-6"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.2 }}
-          >
+          <Zap className="w-4 h-4 text-primary animate-pulse" />
+          <span className="text-sm font-medium text-primary">
             Premier Web3 Marketing Agency
-          </motion.span>
+          </span>
+          <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
         </motion.div>
 
+        {/* Main Heading */}
         <motion.h1
-          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold font-display leading-tight mb-6 text-gradient-hero"
+          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold font-display leading-[1.1] mb-8"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.8 }}
+          transition={{ delay: 0.2, duration: 0.8 }}
         >
-          Elevate Your Web3 Project to New Heights
+          <span className="text-foreground">Elevate Your </span>
+          <span className="text-gradient relative">
+            Web3 Project
+            <motion.svg
+              className="absolute -bottom-2 left-0 w-full"
+              viewBox="0 0 200 8"
+              initial={{ pathLength: 0 }}
+              animate={{ pathLength: 1 }}
+              transition={{ delay: 0.8, duration: 1 }}
+            >
+              <motion.path
+                d="M0 4 Q50 8 100 4 T200 4"
+                fill="none"
+                stroke="url(#gradient)"
+                strokeWidth="3"
+                strokeLinecap="round"
+              />
+              <defs>
+                <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stopColor="hsl(var(--primary))" />
+                  <stop offset="100%" stopColor="hsl(var(--accent))" />
+                </linearGradient>
+              </defs>
+            </motion.svg>
+          </span>
+          <br />
+          <span className="text-foreground">to New Heights</span>
         </motion.h1>
 
+        {/* Subheading */}
         <motion.p
-          className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto mb-10"
+          className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto mb-12 leading-relaxed"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5, duration: 0.8 }}
+          transition={{ delay: 0.4, duration: 0.8 }}
         >
-          Premier marketing solutions driven by dedication and hard work. From community building to KOL partnerships, we're committed to helping your project succeed.
+          Premier marketing solutions driven by dedication and expertise. From community building 
+          to KOL partnerships, we're committed to your success.
         </motion.p>
 
-        <motion.a
-          href="https://t.me/marketmercenary?text=Hi Kraven AI, I'd like to schedule an exploratory call to discuss my project."
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-block px-10 py-4 bg-gradient-to-r from-primary to-accent text-primary-foreground font-bold text-lg rounded-full shadow-[0_10px_40px_hsl(var(--primary)/0.4)] hover:shadow-[0_15px_50px_hsl(var(--primary)/0.6)] hover:-translate-y-1 transition-all duration-300"
+        {/* CTA Buttons */}
+        <motion.div
+          className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.7 }}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.98 }}
+          transition={{ delay: 0.6 }}
         >
-          Schedule Consultation
-        </motion.a>
+          <motion.a
+            href="https://t.me/marketmercenary?text=Hi Kraven AI, I'd like to schedule an exploratory call to discuss my project."
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group relative inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-primary to-accent text-primary-foreground font-bold text-lg rounded-full overflow-hidden shadow-[0_10px_40px_hsl(var(--primary)/0.4)]"
+            whileHover={{ scale: 1.05, y: -3 }}
+            whileTap={{ scale: 0.98 }}
+          >
+            <span className="relative z-10">Schedule Consultation</span>
+            <ArrowRight className="w-5 h-5 relative z-10 group-hover:translate-x-1 transition-transform" />
+            <motion.div
+              className="absolute inset-0 bg-gradient-to-r from-accent to-primary"
+              initial={{ x: '100%' }}
+              whileHover={{ x: 0 }}
+              transition={{ duration: 0.3 }}
+            />
+          </motion.a>
+
+          <motion.a
+            href="#portfolio"
+            className="inline-flex items-center gap-2 px-8 py-4 font-semibold text-foreground border-2 border-primary/30 rounded-full hover:border-primary hover:bg-primary/5 transition-all duration-300"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+          >
+            View Our Work
+          </motion.a>
+        </motion.div>
 
         {/* Stats */}
         <motion.div
-          className="flex flex-wrap justify-center gap-6 sm:gap-10 mt-16"
+          className="grid grid-cols-2 sm:grid-cols-5 gap-4 sm:gap-6"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.9, duration: 0.8 }}
+          transition={{ delay: 0.8, duration: 0.8 }}
         >
           {stats.map((stat, index) => (
             <motion.div
               key={stat.label}
-              className="text-center group"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1 + index * 0.1 }}
-              whileHover={{ y: -5 }}
+              transition={{ delay: 0.9 + index * 0.1 }}
+              whileHover={{ y: -5, scale: 1.02 }}
+              className="glass-card rounded-2xl p-4 sm:p-5 text-center group hover:border-primary/30 transition-all duration-300 cursor-default"
             >
-              <div className="text-3xl sm:text-4xl font-bold text-primary font-display group-hover:scale-110 transition-transform">
+              <div className="text-2xl mb-2">{stat.icon}</div>
+              <div className="text-2xl sm:text-3xl font-bold text-primary font-display group-hover:scale-110 transition-transform">
                 {stat.number}
               </div>
-              <div className="text-xs sm:text-sm text-muted-foreground uppercase tracking-widest mt-1">
+              <div className="text-xs text-muted-foreground uppercase tracking-wider mt-1">
                 {stat.label}
               </div>
             </motion.div>
           ))}
         </motion.div>
-      </div>
+      </motion.div>
+
+      {/* Scroll indicator */}
+      <motion.div
+        className="absolute bottom-8 left-1/2 -translate-x-1/2"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.5 }}
+      >
+        <motion.div
+          className="w-6 h-10 rounded-full border-2 border-primary/30 flex justify-center p-2"
+          animate={{ y: [0, 5, 0] }}
+          transition={{ duration: 2, repeat: Infinity }}
+        >
+          <motion.div
+            className="w-1 h-2 rounded-full bg-primary"
+            animate={{ y: [0, 8, 0], opacity: [1, 0.5, 1] }}
+            transition={{ duration: 2, repeat: Infinity }}
+          />
+        </motion.div>
+      </motion.div>
     </section>
   );
 };

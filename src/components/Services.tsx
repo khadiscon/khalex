@@ -1,89 +1,134 @@
 import { motion } from 'framer-motion';
-import { Sparkles, Megaphone, Rocket, Palette, Lightbulb, Package } from 'lucide-react';
+import { Sparkles, Megaphone, Rocket, Palette, Lightbulb, Package, ArrowUpRight } from 'lucide-react';
 
 const services = [
   {
     icon: Sparkles,
-    title: 'First Impression & Community Infrastructure',
-    description: 'We build the foundation that makes a project look legit from day one. Onboard 100+ vetted KOLs with 1,500-150,000+ followers, complete Discord setup with ticket systems, and professional moderation.',
+    title: 'First Impression & Community',
+    description: 'Build legitimacy from day one with 100+ vetted KOLs, complete Discord setup with ticket systems, and professional moderation.',
+    color: 'from-primary to-cyan-400',
   },
   {
     icon: Megaphone,
     title: 'Marketing & Outreach',
-    description: "We don't \"post content.\" We engineer growth. Strategic campaigns, managed ambassador programs with written/video content, AMAs, X Spaces coordination, and strategic partnerships.",
+    description: 'Strategic campaigns, managed ambassador programs, AMAs, X Spaces coordination, and strategic partnerships.',
+    color: 'from-accent to-blue-400',
   },
   {
     icon: Rocket,
     title: 'Engagement Growth',
-    description: 'Drive real engagement, not bot noise. Our organic KOL engagement improves post performance, boosts utility awareness, and enables discovery by new users—creating sustainable momentum.',
+    description: 'Drive real engagement with organic KOL partnerships that boost visibility and create sustainable momentum.',
+    color: 'from-emerald-400 to-primary',
   },
   {
     icon: Palette,
-    title: 'UI/UX Design (Figma Specialists)',
-    description: 'Dedicated UI/UX team specializing in Figma delivers clean, modern interfaces with high-conversion user flows and designs that signal quality and trust to your audience.',
+    title: 'UI/UX Design',
+    description: 'Dedicated Figma specialists delivering clean interfaces with high-conversion flows that signal quality.',
+    color: 'from-purple-400 to-accent',
   },
   {
     icon: Lightbulb,
-    title: 'Strategy & Business Consultation',
-    description: "We don't recycle strategies. With experience across multiple Web3 projects, we identify what actually moves the needle, avoid wasted spend, and build long-term growth systems.",
+    title: 'Strategy Consultation',
+    description: 'Custom strategies based on experience across multiple Web3 projects to identify what moves the needle.',
+    color: 'from-orange-400 to-primary',
   },
   {
     icon: Package,
     title: 'Flexible Packages',
-    description: '3 core packages designed around common project needs, each delivering different levels of growth. Custom packages available—tailored to your goals with ready-made teams.',
+    description: '3 core packages designed around common needs, plus custom solutions tailored to your specific goals.',
+    color: 'from-pink-400 to-accent',
   },
 ];
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+};
+
 const Services = () => {
   return (
-    <section id="services" className="py-24 px-6 max-w-7xl mx-auto">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: '-100px' }}
-        transition={{ duration: 0.6 }}
-        className="text-center mb-16"
-      >
-        <h2 className="text-4xl md:text-5xl font-bold font-display text-gradient mb-4">
-          Our Services
-        </h2>
-        <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-          Comprehensive Web3 marketing solutions tailored for success
-        </p>
-      </motion.div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {services.map((service, index) => (
-          <motion.div
-            key={service.title}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-50px' }}
-            transition={{ delay: index * 0.1, duration: 0.5 }}
-            whileHover={{ y: -10 }}
-            className="glass-card glass-card-hover rounded-2xl p-8 group relative overflow-hidden"
+    <section id="services" className="py-24 px-6 relative overflow-hidden">
+      {/* Background decoration */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+      
+      <div className="max-w-7xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-100px' }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
+        >
+          <motion.span
+            className="inline-block px-4 py-2 rounded-full glass-card text-primary text-sm font-medium mb-4"
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
           >
-            {/* Gradient overlay on hover */}
-            <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            
-            <div className="relative z-10">
-              <motion.div
-                className="w-16 h-16 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300"
-                whileHover={{ rotate: 5 }}
-              >
-                <service.icon className="w-8 h-8 text-primary-foreground" />
-              </motion.div>
+            What We Offer
+          </motion.span>
+          <h2 className="text-4xl md:text-5xl font-bold font-display text-gradient mb-4">
+            Our Services
+          </h2>
+          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+            Comprehensive Web3 marketing solutions tailored for success
+          </p>
+        </motion.div>
 
-              <h3 className="text-xl font-bold font-display text-primary mb-3">
-                {service.title}
-              </h3>
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-50px' }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+        >
+          {services.map((service) => (
+            <motion.div
+              key={service.title}
+              variants={itemVariants}
+              whileHover={{ y: -8, scale: 1.02 }}
+              className="glass-card rounded-2xl p-8 group relative overflow-hidden cursor-pointer"
+            >
+              {/* Gradient border on hover */}
+              <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10 blur-xl`} />
+              
+              {/* Hover overlay */}
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" />
+              
+              {/* Bottom accent line */}
+              <div className={`absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r ${service.color} scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left`} />
 
-              <p className="text-muted-foreground leading-relaxed">
-                {service.description}
-              </p>
-            </div>
-          </motion.div>
-        ))}
+              <div className="relative z-10">
+                {/* Icon with gradient background */}
+                <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${service.color} flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-all duration-300`}>
+                  <service.icon className="w-7 h-7 text-primary-foreground" />
+                </div>
+
+                <div className="flex items-start justify-between gap-2 mb-3">
+                  <h3 className="text-xl font-bold font-display text-foreground group-hover:text-primary transition-colors">
+                    {service.title}
+                  </h3>
+                  <ArrowUpRight className="w-5 h-5 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 group-hover:-translate-y-1 transition-all opacity-0 group-hover:opacity-100" />
+                </div>
+
+                <p className="text-muted-foreground leading-relaxed">
+                  {service.description}
+                </p>
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
       </div>
     </section>
   );
