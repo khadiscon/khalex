@@ -100,11 +100,11 @@ const Services = () => {
               whileHover={{ y: -8, scale: 1.02 }}
               className="glass-card rounded-2xl p-8 group relative overflow-hidden cursor-pointer"
             >
-              {/* Gradient border on hover */}
-              <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10 blur-xl`} />
+              {/* Subtle glow effect on hover - reduced opacity */}
+              <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-20 transition-opacity duration-500 -z-10 blur-2xl`} />
               
-              {/* Hover overlay */}
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" />
+              {/* Dark overlay to maintain text contrast on hover */}
+              <div className="absolute inset-0 bg-background/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl" />
               
               {/* Bottom accent line */}
               <div className={`absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r ${service.color} scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left`} />
@@ -116,13 +116,13 @@ const Services = () => {
                 </div>
 
                 <div className="flex items-start justify-between gap-2 mb-3">
-                  <h3 className="text-xl font-bold font-display text-foreground group-hover:text-primary transition-colors">
+                  <h3 className="text-xl font-bold font-display text-foreground transition-colors">
                     {service.title}
                   </h3>
-                  <ArrowUpRight className="w-5 h-5 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 group-hover:-translate-y-1 transition-all opacity-0 group-hover:opacity-100" />
+                  <ArrowUpRight className="w-5 h-5 text-muted-foreground group-hover:text-foreground group-hover:translate-x-1 group-hover:-translate-y-1 transition-all opacity-0 group-hover:opacity-100" />
                 </div>
 
-                <p className="text-muted-foreground leading-relaxed">
+                <p className="text-muted-foreground group-hover:text-foreground/80 leading-relaxed transition-colors">
                   {service.description}
                 </p>
               </div>
