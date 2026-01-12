@@ -94,9 +94,18 @@
     color: hsl(var(--foreground));
   }
 
-  /* Hide Lovable badge */
-  #lovable-badge {
+  /* Hide Lovable badge - aggressive approach */
+  #lovable-badge,
+  [id*="lovable"],
+  [class*="lovable-badge"],
+  [data-lovable],
+  a[href*="lovable.dev"]:not([href*="docs"]) {
     display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    position: absolute !important;
+    left: -9999px !important;
   }
 }
 
