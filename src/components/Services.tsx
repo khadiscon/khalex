@@ -97,8 +97,8 @@ const Services = () => {
             <motion.div
               key={service.title}
               variants={itemVariants}
-              whileHover={{ y: -8, scale: 1.02 }}
-              className="glass-card rounded-2xl p-8 group relative overflow-hidden cursor-pointer"
+              whileHover={{ y: -5 }}
+              className="glass-card rounded-2xl p-8 group relative overflow-hidden cursor-pointer will-change-transform"
             >
               {/* Subtle glow effect on hover - reduced opacity */}
               <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-20 transition-opacity duration-500 -z-10 blur-2xl`} />

@@ -25,68 +25,31 @@ const Hero = () => {
       ref={containerRef}
       className="min-h-screen flex items-center justify-center relative overflow-hidden pt-24 pb-20 px-6"
     >
-      {/* Animated Background */}
+      {/* Static Background - optimized for performance */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        {/* Main glow */}
-        <motion.div
-          style={{ y }}
-          className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[900px] h-[900px] bg-primary/15 rounded-full blur-[150px]"
-          animate={{
-            scale: [1, 1.1, 1],
-            opacity: [0.4, 0.6, 0.4],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: 'easeInOut',
-          }}
+        {/* Main glow - static, no animation */}
+        <div
+          className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[700px] bg-primary/10 rounded-full blur-[100px] will-change-transform"
+          style={{ transform: `translateX(-50%) translateY(${scrollYProgress.get() * 100}px)` }}
         />
         
-        {/* Secondary glow */}
-        <motion.div
-          className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-accent/10 rounded-full blur-[120px]"
-          animate={{
-            x: [0, 50, 0],
-            y: [0, -30, 0],
-          }}
-          transition={{
-            duration: 10,
-            repeat: Infinity,
-            ease: 'easeInOut',
-          }}
-        />
+        {/* Secondary glow - static */}
+        <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-accent/8 rounded-full blur-[80px]" />
 
-        {/* Floating particles */}
-        {[...Array(6)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-2 h-2 rounded-full bg-primary/40"
-            style={{
-              left: `${15 + i * 15}%`,
-              top: `${20 + (i % 3) * 25}%`,
-            }}
-            animate={{
-              y: [0, -30, 0],
-              opacity: [0.3, 0.8, 0.3],
-            }}
-            transition={{
-              duration: 4 + i,
-              repeat: Infinity,
-              delay: i * 0.5,
-              ease: 'easeInOut',
-            }}
-          />
-        ))}
+        {/* Reduced particles - only 3 with CSS animation instead of framer-motion */}
+        <div className="absolute w-2 h-2 rounded-full bg-primary/30 animate-pulse" style={{ left: '20%', top: '30%' }} />
+        <div className="absolute w-2 h-2 rounded-full bg-primary/30 animate-pulse" style={{ left: '50%', top: '40%', animationDelay: '1s' }} />
+        <div className="absolute w-2 h-2 rounded-full bg-primary/30 animate-pulse" style={{ left: '80%', top: '25%', animationDelay: '2s' }} />
 
         {/* Grid overlay */}
         <div 
-          className="absolute inset-0 opacity-[0.03]"
+          className="absolute inset-0 opacity-[0.02]"
           style={{
             backgroundImage: `
               linear-gradient(hsl(var(--primary)) 1px, transparent 1px),
               linear-gradient(90deg, hsl(var(--primary)) 1px, transparent 1px)
             `,
-            backgroundSize: '60px 60px',
+            backgroundSize: '80px 80px',
           }}
         />
       </div>
@@ -216,25 +179,12 @@ const Hero = () => {
         </motion.div>
       </motion.div>
 
-      {/* Scroll indicator */}
-      <motion.div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.5 }}
-      >
-        <motion.div
-          className="w-6 h-10 rounded-full border-2 border-primary/30 flex justify-center p-2"
-          animate={{ y: [0, 5, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
-        >
-          <motion.div
-            className="w-1 h-2 rounded-full bg-primary"
-            animate={{ y: [0, 8, 0], opacity: [1, 0.5, 1] }}
-            transition={{ duration: 2, repeat: Infinity }}
-          />
-        </motion.div>
-      </motion.div>
+      {/* Scroll indicator - using CSS animation */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+        <div className="w-6 h-10 rounded-full border-2 border-primary/30 flex justify-center p-2">
+          <div className="w-1 h-2 rounded-full bg-primary" />
+        </div>
+      </div>
     </section>
   );
 };
