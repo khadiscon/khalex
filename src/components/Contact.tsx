@@ -13,12 +13,12 @@ const Contact = () => {
         <motion.div
           className="absolute top-1/4 left-1/4 w-20 h-20 rounded-full bg-primary/10 blur-2xl"
           animate={{ y: [0, -30, 0], x: [0, 20, 0] }}
-          transition={{ duration: 8, repeat: Infinity }}
+          transition={{ duration: 12, repeat: Infinity }}
         />
         <motion.div
           className="absolute bottom-1/4 right-1/4 w-32 h-32 rounded-full bg-accent/10 blur-2xl"
           animate={{ y: [0, 20, 0], x: [0, -30, 0] }}
-          transition={{ duration: 10, repeat: Infinity }}
+          transition={{ duration: 15, repeat: Infinity }}
         />
       </div>
 
@@ -27,7 +27,7 @@ const Contact = () => {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.9 }}
           className="glass-card rounded-3xl p-10 sm:p-16 text-center relative overflow-hidden"
         >
           {/* Decorative corner elements */}
@@ -40,7 +40,7 @@ const Contact = () => {
               initial={{ scale: 0 }}
               whileInView={{ scale: 1 }}
               viewport={{ once: true }}
-              transition={{ type: 'spring', stiffness: 200, delay: 0.2 }}
+              transition={{ type: 'spring', stiffness: 150, delay: 0.3, damping: 15 }}
               className="w-20 h-20 rounded-2xl bg-gradient-to-br from-primary to-accent flex items-center justify-center mx-auto mb-8 shadow-[0_15px_50px_hsl(var(--primary)/0.4)]"
             >
               <Sparkles className="w-10 h-10 text-primary-foreground" />
@@ -50,7 +50,7 @@ const Contact = () => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.3 }}
+              transition={{ delay: 0.4, duration: 0.7 }}
               className="text-3xl sm:text-4xl md:text-5xl font-bold font-display mb-6"
             >
               <span className="text-foreground">Ready to </span>
@@ -62,7 +62,7 @@ const Contact = () => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.4 }}
+              transition={{ delay: 0.5, duration: 0.7 }}
               className="text-lg sm:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto"
             >
               Let's discuss how we can help you achieve your Web3 marketing goals. 
@@ -73,7 +73,7 @@ const Contact = () => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.5 }}
+              transition={{ delay: 0.6, duration: 0.7 }}
               className="flex flex-col sm:flex-row items-center justify-center gap-4"
             >
               <motion.a
@@ -104,7 +104,7 @@ const Contact = () => {
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.7 }}
+              transition={{ delay: 0.9, duration: 0.7 }}
               className="flex flex-wrap items-center justify-center gap-6 mt-10 text-sm text-muted-foreground"
             >
               <div className="flex items-center gap-2">

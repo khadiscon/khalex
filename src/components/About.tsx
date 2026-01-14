@@ -88,7 +88,7 @@ const About = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.9 }}
           className="text-center mb-16"
         >
           <motion.span
@@ -120,7 +120,7 @@ const About = () => {
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
+              transition={{ delay: index * 0.15, duration: 0.6 }}
               whileHover={{ scale: 1.05, y: -5 }}
               className="glass-card rounded-2xl p-5 text-center group hover:border-primary/30 transition-all duration-300"
             >
@@ -141,7 +141,7 @@ const About = () => {
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.9 }}
             className="space-y-6"
           >
             <h3 className="text-3xl font-bold font-display">
@@ -173,7 +173,7 @@ const About = () => {
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.9 }}
             className="grid grid-cols-2 gap-4"
           >
             {values.map((value, index) => (
@@ -182,7 +182,7 @@ const About = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
+                transition={{ delay: index * 0.15, duration: 0.6 }}
                 whileHover={{ y: -5 }}
                 className="glass-card rounded-xl p-5 group hover:border-primary/30 transition-all duration-300"
               >

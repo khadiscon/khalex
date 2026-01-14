@@ -44,7 +44,7 @@ const FAQ = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.9 }}
           className="text-center mb-12"
         >
           <motion.span
@@ -70,7 +70,7 @@ const FAQ = () => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.05, duration: 0.4 }}
+              transition={{ delay: index * 0.08, duration: 0.6 }}
               className={`glass-card rounded-xl overflow-hidden transition-all duration-300 ${
                 openIndex === index ? 'border-primary/40 bg-primary/5' : 'hover:border-primary/20'
               }`}
@@ -87,7 +87,7 @@ const FAQ = () => {
                 <motion.div
                   initial={false}
                   animate={{ rotate: openIndex === index ? 180 : 0 }}
-                  transition={{ duration: 0.2 }}
+                  transition={{ duration: 0.3 }}
                   className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-colors ${
                     openIndex === index
                       ? 'bg-primary text-primary-foreground'
@@ -108,7 +108,7 @@ const FAQ = () => {
                     initial={{ height: 0, opacity: 0 }}
                     animate={{ height: 'auto', opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                    transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                   >
                     <p className="px-5 pb-5 text-muted-foreground leading-relaxed border-t border-primary/10 pt-4">
                       {faq.answer}

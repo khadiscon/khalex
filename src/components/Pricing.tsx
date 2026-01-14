@@ -71,7 +71,7 @@ const Pricing = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.9 }}
           className="text-center mb-12"
         >
           <motion.span
@@ -125,7 +125,7 @@ const Pricing = () => {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.1, duration: 0.5 }}
+              transition={{ delay: index * 0.15, duration: 0.7 }}
               whileHover={{ y: -8 }}
               className={`relative rounded-2xl p-8 overflow-hidden transition-all duration-500 ${
                 plan.popular

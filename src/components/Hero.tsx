@@ -59,7 +59,7 @@ const Hero = () => {
         <motion.div
           initial={{ opacity: 0, y: 20, scale: 0.9 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.8 }}
           className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card border-primary/20 mb-8 group hover:border-primary/40 transition-colors cursor-default"
         >
           <Zap className="w-4 h-4 text-primary animate-pulse" />
@@ -74,7 +74,7 @@ const Hero = () => {
           className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold font-display leading-[1.1] mb-8"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.8 }}
+          transition={{ delay: 0.3, duration: 1.2 }}
         >
           <span className="text-foreground">Elevate Your </span>
           <span className="text-gradient relative">
@@ -84,7 +84,7 @@ const Hero = () => {
               viewBox="0 0 200 8"
               initial={{ pathLength: 0 }}
               animate={{ pathLength: 1 }}
-              transition={{ delay: 0.8, duration: 1 }}
+              transition={{ delay: 1.2, duration: 1.5 }}
             >
               <motion.path
                 d="M0 4 Q50 8 100 4 T200 4"
@@ -110,7 +110,7 @@ const Hero = () => {
           className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto mb-12 leading-relaxed"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4, duration: 0.8 }}
+          transition={{ delay: 0.6, duration: 1 }}
         >
           Premier marketing solutions driven by dedication and expertise. From community building 
           to KOL partnerships, we're committed to your success.
@@ -121,7 +121,7 @@ const Hero = () => {
           className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6 }}
+          transition={{ delay: 0.9, duration: 0.8 }}
         >
           <motion.a
             href="https://t.me/marketmercenary?text=Hi Kraven AI, I'd like to schedule an exploratory call to discuss my project."
@@ -156,14 +156,14 @@ const Hero = () => {
           className="grid grid-cols-2 sm:grid-cols-5 gap-4 sm:gap-6"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8, duration: 0.8 }}
+          transition={{ delay: 1.2, duration: 1 }}
         >
           {stats.map((stat, index) => (
             <motion.div
               key={stat.label}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.9 + index * 0.1 }}
+              transition={{ delay: 1.4 + index * 0.15, duration: 0.6 }}
               whileHover={{ y: -5, scale: 1.02 }}
               className="glass-card rounded-2xl p-4 sm:p-5 text-center group hover:border-primary/30 transition-all duration-300 cursor-default"
             >
