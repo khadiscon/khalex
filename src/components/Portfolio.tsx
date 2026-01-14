@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { ExternalLink, TrendingUp, Users, Eye } from 'lucide-react';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const projects = [
   {
@@ -41,13 +42,17 @@ const projects = [
 ];
 
 const Portfolio = () => {
+  const isMobile = useIsMobile();
+
   return (
     <section id="portfolio" className="py-24 px-6 relative">
-      {/* Background elements - reduced blur for performance */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-1/2 left-1/4 w-80 h-80 bg-primary/3 rounded-full blur-[60px]" />
-        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-accent/3 rounded-full blur-[60px]" />
-      </div>
+      {/* Background elements - hidden on mobile for performance */}
+      {!isMobile && (
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          <div className="absolute top-1/2 left-1/4 w-80 h-80 bg-primary/3 rounded-full blur-[60px]" />
+          <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-accent/3 rounded-full blur-[60px]" />
+        </div>
+      )}
 
       <div className="max-w-7xl mx-auto relative z-10">
         <motion.div

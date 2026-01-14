@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Quote, ChevronLeft, ChevronRight, Star } from 'lucide-react';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const testimonials = [
   {
@@ -29,6 +30,7 @@ const testimonials = [
 const Testimonials = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(0);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -63,10 +65,12 @@ const Testimonials = () => {
 
   return (
     <section id="testimonials" className="py-24 px-6 relative overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[120px]" />
-      </div>
+      {/* Background - hidden on mobile */}
+      {!isMobile && (
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[120px]" />
+        </div>
+      )}
 
       <div className="max-w-4xl mx-auto relative z-10">
         <motion.div

@@ -1,25 +1,30 @@
 import { motion } from 'framer-motion';
 import { MessageCircle, ArrowRight, Sparkles } from 'lucide-react';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const Contact = () => {
+  const isMobile = useIsMobile();
+
   return (
     <section id="contact" className="py-24 px-6 relative overflow-hidden">
-      {/* Background */}
+      {/* Background - simplified on mobile */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute inset-0 bg-gradient-to-b from-primary/10 via-accent/5 to-transparent" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/10 rounded-full blur-[150px]" />
-        
-        {/* Floating elements */}
-        <motion.div
-          className="absolute top-1/4 left-1/4 w-20 h-20 rounded-full bg-primary/10 blur-2xl"
-          animate={{ y: [0, -30, 0], x: [0, 20, 0] }}
-          transition={{ duration: 12, repeat: Infinity }}
-        />
-        <motion.div
-          className="absolute bottom-1/4 right-1/4 w-32 h-32 rounded-full bg-accent/10 blur-2xl"
-          animate={{ y: [0, 20, 0], x: [0, -30, 0] }}
-          transition={{ duration: 15, repeat: Infinity }}
-        />
+        <div className={`absolute inset-0 bg-gradient-to-b from-primary/10 via-accent/5 to-transparent`} />
+        {!isMobile && (
+          <>
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/10 rounded-full blur-[150px]" />
+            <motion.div
+              className="absolute top-1/4 left-1/4 w-20 h-20 rounded-full bg-primary/10 blur-2xl"
+              animate={{ y: [0, -30, 0], x: [0, 20, 0] }}
+              transition={{ duration: 12, repeat: Infinity }}
+            />
+            <motion.div
+              className="absolute bottom-1/4 right-1/4 w-32 h-32 rounded-full bg-accent/10 blur-2xl"
+              animate={{ y: [0, 20, 0], x: [0, -30, 0] }}
+              transition={{ duration: 15, repeat: Infinity }}
+            />
+          </>
+        )}
       </div>
 
       <div className="max-w-4xl mx-auto relative z-10">
