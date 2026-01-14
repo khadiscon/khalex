@@ -47,7 +47,7 @@ const Process = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.9 }}
           className="text-center mb-16"
         >
           <motion.span
@@ -78,7 +78,7 @@ const Process = () => {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.15, duration: 0.5 }}
+                transition={{ delay: index * 0.2, duration: 0.7 }}
                 className="relative group"
               >
                 {/* Connector dot */}
@@ -126,7 +126,7 @@ const Process = () => {
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.1, duration: 0.5 }}
+              transition={{ delay: index * 0.15, duration: 0.7 }}
               className="flex gap-4 group"
             >
               {/* Left side - step indicator */}

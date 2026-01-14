@@ -46,7 +46,7 @@ const Navbar = () => {
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
       className={`fixed top-0 w-full z-50 transition-all duration-500 ${
         isScrolled
           ? 'bg-background/80 backdrop-blur-2xl border-b border-primary/10 shadow-[0_4px_30px_rgba(0,255,194,0.08)]'
@@ -123,7 +123,7 @@ const Navbar = () => {
                 initial={{ rotate: -90, opacity: 0 }}
                 animate={{ rotate: 0, opacity: 1 }}
                 exit={{ rotate: 90, opacity: 0 }}
-                transition={{ duration: 0.2 }}
+                transition={{ duration: 0.3 }}
               >
                 <X size={20} />
               </motion.div>
@@ -133,7 +133,7 @@ const Navbar = () => {
                 initial={{ rotate: 90, opacity: 0 }}
                 animate={{ rotate: 0, opacity: 1 }}
                 exit={{ rotate: -90, opacity: 0 }}
-                transition={{ duration: 0.2 }}
+                transition={{ duration: 0.3 }}
               >
                 <Menu size={20} />
               </motion.div>
@@ -149,7 +149,7 @@ const Navbar = () => {
             initial={{ opacity: 0, height: 0, y: -20 }}
             animate={{ opacity: 1, height: 'auto', y: 0 }}
             exit={{ opacity: 0, height: 0, y: -20 }}
-            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
             className="lg:hidden bg-background/98 backdrop-blur-2xl border-b border-primary/10 overflow-hidden"
           >
             <div className="px-6 py-6 flex flex-col gap-2">
@@ -159,7 +159,7 @@ const Navbar = () => {
                   onClick={() => scrollToSection(link.href)}
                   initial={{ opacity: 0, x: -30 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.05, duration: 0.3 }}
+                  transition={{ delay: index * 0.08, duration: 0.5 }}
                   className={`text-left text-lg font-medium py-3 px-4 rounded-xl transition-all duration-300 ${
                     activeSection === link.href.slice(1)
                       ? 'bg-primary/10 text-primary'
@@ -176,7 +176,7 @@ const Navbar = () => {
                 rel="noopener noreferrer"
                 initial={{ opacity: 0, x: -30 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: navLinks.length * 0.05, duration: 0.3 }}
+                transition={{ delay: navLinks.length * 0.08, duration: 0.5 }}
                 className="mt-4 w-full py-4 bg-gradient-to-r from-primary to-accent text-primary-foreground font-bold text-center rounded-xl"
               >
                 Get Started

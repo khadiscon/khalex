@@ -39,7 +39,7 @@ const Newsletter = () => {
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
+        transition={{ duration: 0.9 }}
         className="max-w-2xl mx-auto"
       >
         <div className="glass-card rounded-2xl p-8 sm:p-12 relative overflow-hidden group hover:border-primary/30 transition-all duration-500">
