@@ -1,6 +1,7 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowRight, Zap } from 'lucide-react';
 import { useRef } from 'react';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const stats = [
   { number: '530K+', label: 'Followers', icon: '👥' },
@@ -12,12 +13,12 @@ const stats = [
 
 const Hero = () => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const isMobile = useIsMobile();
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ['start start', 'end start'],
   });
 
-  const y = useTransform(scrollYProgress, [0, 1], [0, 200]);
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
   return (
@@ -25,23 +26,28 @@ const Hero = () => {
       ref={containerRef}
       className="min-h-screen flex items-center justify-center relative overflow-hidden pt-24 pb-20 px-6"
     >
-      {/* Static Background - optimized for performance */}
+      {/* Background - optimized for mobile (no blur on mobile) */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        {/* Main glow - static, no animation */}
+        {/* Main glow - reduced blur on mobile */}
         <div
-          className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[700px] bg-primary/10 rounded-full blur-[100px] will-change-transform"
-          style={{ transform: `translateX(-50%) translateY(${scrollYProgress.get() * 100}px)` }}
+          className={`absolute top-1/4 left-1/2 -translate-x-1/2 w-[500px] h-[500px] md:w-[700px] md:h-[700px] bg-primary/10 rounded-full ${isMobile ? '' : 'blur-[100px]'}`}
         />
         
-        {/* Secondary glow - static */}
-        <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-accent/8 rounded-full blur-[80px]" />
+        {/* Secondary glow - hidden on mobile for performance */}
+        {!isMobile && (
+          <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-accent/8 rounded-full blur-[80px]" />
+        )}
 
-        {/* Reduced particles - only 3 with CSS animation instead of framer-motion */}
-        <div className="absolute w-2 h-2 rounded-full bg-primary/30 animate-pulse" style={{ left: '20%', top: '30%' }} />
-        <div className="absolute w-2 h-2 rounded-full bg-primary/30 animate-pulse" style={{ left: '50%', top: '40%', animationDelay: '1s' }} />
-        <div className="absolute w-2 h-2 rounded-full bg-primary/30 animate-pulse" style={{ left: '80%', top: '25%', animationDelay: '2s' }} />
+        {/* Particles - hidden on mobile */}
+        {!isMobile && (
+          <>
+            <div className="absolute w-2 h-2 rounded-full bg-primary/30 animate-pulse" style={{ left: '20%', top: '30%' }} />
+            <div className="absolute w-2 h-2 rounded-full bg-primary/30 animate-pulse" style={{ left: '50%', top: '40%', animationDelay: '1s' }} />
+            <div className="absolute w-2 h-2 rounded-full bg-primary/30 animate-pulse" style={{ left: '80%', top: '25%', animationDelay: '2s' }} />
+          </>
+        )}
 
-        {/* Grid overlay */}
+        {/* Grid overlay - simplified on mobile */}
         <div 
           className="absolute inset-0 opacity-[0.02]"
           style={{
@@ -49,7 +55,7 @@ const Hero = () => {
               linear-gradient(hsl(var(--primary)) 1px, transparent 1px),
               linear-gradient(90deg, hsl(var(--primary)) 1px, transparent 1px)
             `,
-            backgroundSize: '80px 80px',
+            backgroundSize: isMobile ? '60px 60px' : '80px 80px',
           }}
         />
       </div>

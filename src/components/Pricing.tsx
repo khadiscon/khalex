@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Check, Star, Zap, Crown } from 'lucide-react';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const plans = [
   {
@@ -58,13 +59,16 @@ const plans = [
 
 const Pricing = () => {
   const [isQuarterly, setIsQuarterly] = useState(false);
+  const isMobile = useIsMobile();
 
   return (
     <section id="pricing" className="py-24 px-6 relative overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/5 rounded-full blur-[150px]" />
-      </div>
+      {/* Background - hidden on mobile */}
+      {!isMobile && (
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/5 rounded-full blur-[150px]" />
+        </div>
+      )}
 
       <div className="max-w-7xl mx-auto relative z-10">
         <motion.div

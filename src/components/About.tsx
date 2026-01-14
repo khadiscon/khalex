@@ -1,6 +1,7 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef, useEffect, useState } from 'react';
 import { Target, Shield, Zap, Heart } from 'lucide-react';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const metrics = [
   { number: 530000, suffix: '+', label: 'Total Followers' },
@@ -75,12 +76,16 @@ const AnimatedNumber = ({ value, suffix }: { value: number; suffix: string }) =>
 };
 
 const About = () => {
+  const isMobile = useIsMobile();
+
   return (
     <section id="about" className="py-24 px-6 relative overflow-hidden">
-      {/* Background gradient */}
+      {/* Background gradient - simplified on mobile */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] bg-gradient-radial from-primary/10 via-transparent to-transparent rounded-full blur-3xl" />
+        {!isMobile && (
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] bg-gradient-radial from-primary/10 via-transparent to-transparent rounded-full blur-3xl" />
+        )}
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10">

@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { Phone, FileText, Rocket, Settings, BarChart3, ArrowRight } from 'lucide-react';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const steps = [
   {
@@ -35,12 +36,16 @@ const steps = [
 ];
 
 const Process = () => {
+  const isMobile = useIsMobile();
+
   return (
     <section id="process" className="py-24 relative overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/5 rounded-full blur-[150px]" />
-      </div>
+      {/* Background - hidden on mobile */}
+      {!isMobile && (
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/5 rounded-full blur-[150px]" />
+        </div>
+      )}
 
       <div className="relative z-10 px-6 max-w-7xl mx-auto">
         <motion.div
