@@ -160,7 +160,7 @@ const Testimonials = () => {
             </motion.button>
 
             {/* Dots */}
-            <div className="flex gap-2">
+            <div className="flex gap-1">
               {testimonials.map((_, index) => (
                 <button
                   key={index}
@@ -168,13 +168,17 @@ const Testimonials = () => {
                     setDirection(index > currentIndex ? 1 : -1);
                     setCurrentIndex(index);
                   }}
-                  className={`h-2 rounded-full transition-all duration-300 ${
-                    index === currentIndex
-                      ? 'w-8 bg-primary'
-                      : 'w-2 bg-primary/30 hover:bg-primary/50'
-                  }`}
+                  className="p-2 flex items-center justify-center"
                   aria-label={`Go to testimonial ${index + 1}`}
-                />
+                >
+                  <span
+                    className={`h-2 rounded-full transition-all duration-300 ${
+                      index === currentIndex
+                        ? 'w-8 bg-primary'
+                        : 'w-2 bg-primary/30 hover:bg-primary/50'
+                    }`}
+                  />
+                </button>
               ))}
             </div>
 
