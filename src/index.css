@@ -4,6 +4,11 @@
 @tailwind components;
 @tailwind utilities;
 
+/* CSS containment for better rendering performance */
+section {
+  contain: layout style;
+}
+
 @layer base {
   :root {
     /* Dark futuristic theme */
