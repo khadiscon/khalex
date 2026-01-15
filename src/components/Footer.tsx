@@ -90,9 +90,9 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-bold font-display text-foreground mb-4">
+            <h3 className="font-bold font-display text-foreground mb-4 text-base">
               Quick Links
-            </h4>
+            </h3>
             <ul className="space-y-3">
               {footerLinks.map((link) => (
                 <li key={link.label}>
@@ -109,9 +109,9 @@ const Footer = () => {
 
           {/* Contact */}
           <div>
-            <h4 className="font-bold font-display text-foreground mb-4">
+            <h3 className="font-bold font-display text-foreground mb-4 text-base">
               Get in Touch
-            </h4>
+            </h3>
             <div className="space-y-3">
               <a
                 href="https://t.me/marketmercenary"
