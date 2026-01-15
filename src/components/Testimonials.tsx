@@ -2,17 +2,19 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Quote, ChevronLeft, ChevronRight, Star } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
+import satyaAvatar from '@/assets/testimonial-satya.png';
+import prudentAvatar from '@/assets/testimonial-prudent.png';
 
 const testimonials = [
   {
-    avatar: 'https://raw.githubusercontent.com/khadiscon/kravenai/main/Screenshot 2025-12-28 042050.png',
+    avatar: satyaAvatar,
     text: "Kraven AI transformed our token launch. Their KOL network and community building expertise helped us build a thriving engaged community. Absolutely phenomenal dedication and results!",
     author: 'Satya',
     role: 'CEO, CryptoVentures',
     rating: 5,
   },
   {
-    avatar: 'https://raw.githubusercontent.com/khadiscon/kravenai/main/Screenshot 2025-12-28 053000.png',
+    avatar: prudentAvatar,
     text: "Working with Kraven AI was a game-changer for our project. Their strategic approach and attention to detail resulted in massive engagement growth and community expansion. Highly recommend!",
     author: 'PRUDENT 📊🔺(♟️,♟️)',
     role: 'Founder, DeFi Innovations',
