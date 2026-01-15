@@ -1,12 +1,13 @@
 import { motion } from 'framer-motion';
 import { ExternalLink, TrendingUp, Users, Eye } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
+import gamefiImage from '@/assets/gamefi-platform.jpg';
 
 const projects = [
   {
     title: 'GameFi Platform Launch',
     category: 'Play-to-Earn',
-    image: 'https://raw.githubusercontent.com/khadiscon/kravenai/main/5963321216305138641.jpg',
+    image: gamefiImage,
     description: 'Comprehensive 4-month marketing campaign for an emerging P2E platform with community building and KOL partnerships.',
     stats: [
       { label: 'Duration', value: '4 Months' },
