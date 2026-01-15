@@ -115,6 +115,7 @@ const Navbar = () => {
           className="lg:hidden w-10 h-10 rounded-xl glass-card flex items-center justify-center text-primary"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           whileTap={{ scale: 0.9 }}
+          aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
         >
           <AnimatePresence mode="wait">
             {isMobileMenuOpen ? (
