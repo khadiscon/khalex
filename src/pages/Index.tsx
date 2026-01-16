@@ -11,6 +11,7 @@ const Pricing = lazy(() => import('@/components/Pricing'));
 const FAQ = lazy(() => import('@/components/FAQ'));
 const Testimonials = lazy(() => import('@/components/Testimonials'));
 const Contact = lazy(() => import('@/components/Contact'));
+const KOLApplication = lazy(() => import('@/components/KOLApplication'));
 const Newsletter = lazy(() => import('@/components/Newsletter'));
 const Footer = lazy(() => import('@/components/Footer'));
 const ScrollToTop = lazy(() => import('@/components/ScrollToTop'));
@@ -81,6 +82,9 @@ const Index = () => {
           </Suspense>
           <Suspense fallback={<SectionFallback />}>
             <Contact />
+          </Suspense>
+          <Suspense fallback={<SectionFallback />}>
+            <KOLApplication />
           </Suspense>
           <Suspense fallback={<SectionFallback />}>
             <Newsletter />
