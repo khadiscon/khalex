@@ -78,11 +78,12 @@ const KOLApplication = () => {
             >
               <Users className="w-8 h-8 text-primary-foreground" />
             </motion.div>
+            <p className="text-primary font-semibold text-lg mb-2">Are you a KOL?</p>
             <h2 className="text-3xl sm:text-4xl font-bold font-display text-foreground mb-4">
-              Join Our <span className="text-gradient">KOL Network</span>
+              Join our <span className="text-gradient">KOL network</span>
             </h2>
             <p className="text-muted-foreground text-lg max-w-xl mx-auto">
-              Are you a Key Opinion Leader in the Web3 space? Partner with Kraven AI and amplify your influence.
+              Partner with Kraven AI and amplify your influence.
             </p>
           </div>
 
@@ -219,7 +220,7 @@ const KOLApplication = () => {
 
               {/* Row 5: Message */}
               <div>
-                <label className="block text-sm font-medium text-foreground mb-2">Why do you want to join Kraven AI?</label>
+                <label className="block text-sm font-medium text-foreground mb-2">Why Kraven AI?</label>
                 <textarea
                   name="message"
                   value={formData.message}
